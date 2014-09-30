@@ -1,29 +1,37 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+#include<stdio.h>
+#include<string.h>
 
-# Precompiled Headers
-*.gch
-*.pch
+char turn(char a[],int i)
+{
+	int n,j;
+	char k;
+	static int l=-1;
+	if(l==-1)
+	{
+		n=i/2;
+		for(j=0;j<=(n-1);j++)
+		{
+			k=a[j];
+			a[j]=a[i-j-1];
+			a[i-j-1]=k;
+		}
+		
+	}
+	l=l+1;
+	return a[l];
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+int main()
+{
+	char x[20];
+	int i,j,m;
+	printf("输入:");
+	scanf("%s",x);
+	m=strlen(x);
+	for(i=0;i<=(m-1);i++)
+	{
+		x[i]=turn(x,m);
+	}
+	printf("颠倒输出：");
+	printf("%s",x);
+}
